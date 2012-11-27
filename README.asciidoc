@@ -1,5 +1,7 @@
 = Android Bootcamp =
 
+https://github.com/marakana/class-2499[Class GIT Repo]
+
 == Link ==
 
 * http://software.intel.com/en-us/articles/intel-hardware-accelerated-execution-manager/[Intel HAXM]
