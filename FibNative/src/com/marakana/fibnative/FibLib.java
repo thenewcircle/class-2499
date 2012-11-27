@@ -10,4 +10,8 @@ public class FibLib {
 	
 	
 	public static native long fibN(long n);
+	
+	static {
+		System.loadLibrary("FibLib");
+	}
 }
