@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.marakana.fibcommon.IFibService;
+import com.marakana.fibcommon.Request;
 
 public class MainActivity extends Activity {
 	static final Intent FIB_SERVICE = new Intent(
@@ -45,17 +46,20 @@ public class MainActivity extends Activity {
 
 	public void onClick(View v) throws RemoteException {
 		long n = Long.parseLong(input.getText().toString());
-
+		Request request = new Request(-1, n);
+		
 		// Java
 		long timeJ = System.currentTimeMillis();
-		long resultJ = fibService.fibJ(n);
+		request.setAlgorithm(Request.ALGORITHM_JAVA);
+		long resultJ = fibService.fib( request );
 		timeJ = System.currentTimeMillis() - timeJ;
 		output.append(String.format("\n fibJ(%d) = %d (%d ms)", n, resultJ,
 				timeJ));
 
 		// Native
 		long timeN = System.currentTimeMillis();
-		long resultN = fibService.fibN(n);
+		request.setAlgorithm(Request.ALGORITHM_NATIVE);
+		long resultN = fibService.fib( request );
 		timeN = System.currentTimeMillis() - timeN;
 		output.append(String.format("\n fibN(%d) = %d (%d ms)", n, resultN,
 				timeN));
