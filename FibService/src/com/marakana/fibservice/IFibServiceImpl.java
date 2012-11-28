@@ -2,6 +2,7 @@ package com.marakana.fibservice;
 
 import android.os.RemoteException;
 
+import com.marakana.fibcommon.IFibListener;
 import com.marakana.fibcommon.IFibService;
 import com.marakana.fibcommon.Request;
 import com.marakana.fibnative.FibLib;
@@ -28,6 +29,13 @@ public class IFibServiceImpl extends IFibService.Stub {
 		default:
 			throw new IllegalArgumentException("Unknown algorithm");
 		}
+	}
+
+	@Override
+	public void asyncFib(Request request, IFibListener listener)
+			throws RemoteException {
+		long result = fib(request);
+		listener.onResponse(result);
 	}
 
 }

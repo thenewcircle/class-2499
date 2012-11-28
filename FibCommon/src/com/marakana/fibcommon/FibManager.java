@@ -41,9 +41,17 @@ public class FibManager {
 		try {
 			return fibService.fib(request);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
 		}
 	}
+	
+	public void asyncFib(Request request, IFibListener listener) {
+		try {
+			fibService.asyncFib(request, listener);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
